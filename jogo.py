@@ -3,9 +3,9 @@ import sys
 import random
 
 # definindo constantes
-largura, altura = 400, 400
+largura, altura = 300, 300
 tamanho_celula = 20
-fps = 10
+fps = 12
 
 class JogoCobrinha:
     def __init__(self):
@@ -13,14 +13,17 @@ class JogoCobrinha:
 
         # configuração da janela do jogo
         self.tela = pygame.display.set_mode((largura, altura))
-        pygame.display.set_caption("Jogo da Cobrinha")
+        pygame.display.set_caption("snake")
 
         # relógio para controlar a taxa de atualização
         self.clock = pygame.time.Clock()
 
         # inicialização da cobra
+        self.reiniciar_jogo()
+
+    def reiniciar_jogo(self):
         self.cobra = [[100, 100], [90, 100], [80, 100]]  # lista de coordenadas dos segmentos da cobra
-        self.direcao = 'DIREITA'  # direção inicial da cobra
+        self.direcao = 'direita'  # direção inicial da cobra
 
         # posição inicial da comida e geração da primeira comida
         self.comida = self.gerar_comida()
@@ -54,29 +57,33 @@ class JogoCobrinha:
 
     def atualizar_direcao(self, key):
         # atualiza a direção da cobra com base na tecla pressionada
-        if key == pygame.K_UP and self.direcao != 'BAIXO':
-            self.direcao = 'CIMA'
-        elif key == pygame.K_DOWN and self.direcao != 'CIMA':
-            self.direcao = 'BAIXO'
-        elif key == pygame.K_LEFT and self.direcao != 'DIREITA':
-            self.direcao = 'ESQUERDA'
-        elif key == pygame.K_RIGHT and self.direcao != 'ESQUERDA':
-            self.direcao = 'DIREITA'
+        if key == pygame.K_UP and self.direcao != 'baixo':
+            self.direcao = 'cima'
+        elif key == pygame.K_DOWN and self.direcao != 'cima':
+            self.direcao = 'baixo'
+        elif key == pygame.K_LEFT and self.direcao != 'direita':
+            self.direcao = 'esquerda'
+        elif key == pygame.K_RIGHT and self.direcao != 'esquerda':
+            self.direcao = 'direita'
 
     def atualizar(self):
         # atualiza a posição da cabeça da cobra com base na direção
-        if self.direcao == 'CIMA':
+        if self.direcao == 'cima':
             nova_cabeca = [self.cobra[0][0], self.cobra[0][1] - tamanho_celula]
-        elif self.direcao == 'BAIXO':
+        elif self.direcao == 'baixo':
             nova_cabeca = [self.cobra[0][0], self.cobra[0][1] + tamanho_celula]
-        elif self.direcao == 'ESQUERDA':
+        elif self.direcao == 'esquerda':
             nova_cabeca = [self.cobra[0][0] - tamanho_celula, self.cobra[0][1]]
-        elif self.direcao == 'DIREITA':
+        elif self.direcao == 'direita':
             nova_cabeca = [self.cobra[0][0] + tamanho_celula, self.cobra[0][1]]
 
         # ajusta as coordenadas para permitir que a cobra atravesse os limites
         nova_cabeca[0] = nova_cabeca[0] % largura
         nova_cabeca[1] = nova_cabeca[1] % altura
+
+        # verifica se a cobra colidiu com o próprio corpo
+        if nova_cabeca in self.cobra[1:]:
+            self.reiniciar_jogo()
 
         # adiciona a nova cabeça à cobra
         self.cobra.insert(0, nova_cabeca)
@@ -89,15 +96,16 @@ class JogoCobrinha:
             self.cobra.pop()
 
     def desenhar(self):
-        self.tela.fill((255, 255, 255))  # preenche o fundo com branco
+        self.tela.fill((152, 251, 152))  # preenche o fundo com verde pastel
 
         # desenha a cobra
         for i, segmento in enumerate(self.cobra):
-            cor = (0, 255, 0) if i == 0 else (0, 200, 0)  # cabeça verde, corpo verde escuro
-            pygame.draw.rect(self.tela, cor, (segmento[0], segmento[1], tamanho_celula, tamanho_celula))
+            cor_cabeca = (173, 216, 230) if i == 0 else (135, 206, 250)  # cabeça azul pastel, corpo azul claro pastel
+            pygame.draw.rect(self.tela, cor_cabeca, (segmento[0], segmento[1], tamanho_celula, tamanho_celula))
 
         # desenha a comida
-        pygame.draw.rect(self.tela, (255, 0, 0), (self.comida[0], self.comida[1], tamanho_celula, tamanho_celula))
+        cor_comida = (255, 182, 193)  # vermelho claro pastel
+        pygame.draw.rect(self.tela, cor_comida, (self.comida[0], self.comida[1], tamanho_celula, tamanho_celula))
 
 # inicia o jogo
 jogo = JogoCobrinha()
