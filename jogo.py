@@ -96,15 +96,16 @@ class JogoCobrinha:
             self.cobra.pop()
 
     def desenhar(self):
-        self.tela.fill((152, 251, 152))  # preenche o fundo com verde pastel
+        self.tela.fill((4, 31, 38))  # preenche o fundo com a nova cor verde pastel
 
         # desenha a cobra
         for i, segmento in enumerate(self.cobra):
-            cor_cabeca = (173, 216, 230) if i == 0 else (135, 206, 250)  # cabeça azul pastel, corpo azul claro pastel
+            cores_cobra = [(173, 216, 230), (135, 206, 250)]  # cabeça azul pastel, corpo azul claro pastel
+            cor_cabeca = cores_cobra[0] if i == 0 else cores_cobra[1]
             pygame.draw.rect(self.tela, cor_cabeca, (segmento[0], segmento[1], tamanho_celula, tamanho_celula))
 
         # desenha a comida
-        cor_comida = (255, 182, 193)  # vermelho claro pastel
+        cor_comida = (242, 167, 26)  # amarelo
         pygame.draw.rect(self.tela, cor_comida, (self.comida[0], self.comida[1], tamanho_celula, tamanho_celula))
 
 # inicia o jogo
