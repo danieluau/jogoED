@@ -5,7 +5,7 @@ import random
 # definindo constantes
 largura, altura = 300, 300
 tamanho_celula = 20
-fps = 12
+fps = 10
 
 class JogoCobrinha:
     def __init__(self):
