@@ -85,15 +85,16 @@ class JogoCobrinha:
         if nova_cabeca in self.cobra[1:]:
             self.reiniciar_jogo()
 
-        # adiciona a nova cabeça à cobra
-        self.cobra.insert(0, nova_cabeca)
-
-        # verifica se a cobra comeu a comida
+        # verifica se a cobra atingiu a posição da comida
         if nova_cabeca == self.comida:
+            self.cobra.append(self.comida)  # adiciona a comida à cauda da cobra
             self.comida = self.gerar_comida()  # gera nova comida
         else:
             # remove a cauda se a cobra não comeu
             self.cobra.pop()
+
+        # adiciona a nova cabeça à cobra
+        self.cobra.insert(0, nova_cabeca)
 
     def desenhar(self):
         self.tela.fill((4, 31, 38))  # preenche o fundo com a nova cor verde pastel
