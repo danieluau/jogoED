@@ -7,7 +7,7 @@ largura, altura = 300, 300
 tamanho_celula = 20
 fps = 10
 
-class JogoCobrinha:
+class JogoDaCobrinha:
     def __init__(self):
         pygame.init()
 
@@ -19,16 +19,16 @@ class JogoCobrinha:
         self.clock = pygame.time.Clock()
 
         # inicialização da cobra
-        self.reiniciar_jogo()
+        self.reiniciarjogo()
 
-    def reiniciar_jogo(self):
+    def reiniciarjogo(self):
         self.cobra = [[100, 100], [90, 100], [80, 100]]  # lista de coordenadas dos segmentos da cobra
         self.direcao = 'direita'  # direção inicial da cobra
 
         # posição inicial da comida e geração da primeira comida
-        self.comida = self.gerar_comida()
+        self.comida = self.geraandocomida()
 
-    def gerar_comida(self):
+    def geraandocomida(self):
         # gera uma nova posição para a comida
         comida = [random.randrange(1, (largura // tamanho_celula)) * tamanho_celula,
                   random.randrange(1, (altura // tamanho_celula)) * tamanho_celula]
@@ -110,5 +110,5 @@ class JogoCobrinha:
         pygame.draw.rect(self.tela, cor_comida, (self.comida[0], self.comida[1], tamanho_celula, tamanho_celula))
 
 # inicia o jogo
-jogo = JogoCobrinha()
+jogo = JogoDaCobrinha()
 jogo.run()
