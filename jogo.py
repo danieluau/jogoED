@@ -2,10 +2,14 @@ import pygame
 import sys
 import random
 
+#joguinho feito para demonstrar lista e suas operaçoes
+
 # definindo constantes
 largura, altura = 300, 300
 tamanho_celula = 20
 fps = 10
+
+
 
 class JogoDaCobrinha:
     def __init__(self):
@@ -26,9 +30,9 @@ class JogoDaCobrinha:
         self.direcao = 'direita'  # direção inicial da cobra
 
         # posição inicial da comida e geração da primeira comida
-        self.comida = self.geraandocomida()
+        self.comida = self.gerandocomida()
 
-    def geraandocomida(self):
+    def gerandocomida(self):
         # gera uma nova posição para a comida
         comida = [random.randrange(1, (largura // tamanho_celula)) * tamanho_celula,
                   random.randrange(1, (altura // tamanho_celula)) * tamanho_celula]
@@ -39,6 +43,8 @@ class JogoDaCobrinha:
                       random.randrange(1, (altura // tamanho_celula)) * tamanho_celula]
 
         return comida
+
+
 
     def run(self):
         while True:
@@ -83,12 +89,12 @@ class JogoDaCobrinha:
 
         # verifica se a cobra colidiu com o próprio corpo
         if nova_cabeca in self.cobra[1:]:
-            self.reiniciar_jogo()
+            self.reiniciarjogo()
 
         # verifica se a cobra atingiu a posição da comida
         if nova_cabeca == self.comida:
             self.cobra.append(self.comida)  # adiciona a comida à cauda da cobra
-            self.comida = self.gerar_comida()  # gera nova comida
+            self.comida = self.gerandocomida()  # gera nova comida
         else:
             # remove a cauda se a cobra não comeu
             self.cobra.pop()
@@ -108,6 +114,8 @@ class JogoDaCobrinha:
         # desenha a comida
         cor_comida = (242, 167, 26)  # amarelo
         pygame.draw.rect(self.tela, cor_comida, (self.comida[0], self.comida[1], tamanho_celula, tamanho_celula))
+
+
 
 # inicia o jogo
 jogo = JogoDaCobrinha()
