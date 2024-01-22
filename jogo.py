@@ -5,7 +5,7 @@ import random
 #joguinho feito para demonstrar lista e suas operaçoes
 
 # definindo constantes
-largura, altura = 300, 300
+largura, altura = 400, 400
 tamanho_celula = 20
 fps = 10
 
