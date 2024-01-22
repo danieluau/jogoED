@@ -37,3 +37,10 @@ self.cobra.insert(0, nova_cabeca)`
 ## Resumo
 
 Essas estruturas de dados revelaram-se fundamentais para o funcionamento do jogo, desde o rastreamento da posição da cobra até a geração de comida aleatória no tabuleiro. Além disso, a aritmética modular é utilizada para ajustar as posições e permitir que a cobra transponha os limites do tabuleiro. Espero que isso ajude a compreender como as estruturas de dados têm um papel crucial neste jogo.
+
+## Equipe
+- Aldevan da Silva Paulino 
+- Daniel Araujo Leal 
+- Hilizangela Tallia de S. dos Reis 
+- James R. Sales e Morais 
+- Joyce Moura Silva
