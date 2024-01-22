@@ -27,7 +27,7 @@ utilização: para a comida, uma lista de coordenadas é usada. cada elemento co
 
 *fila (simulado com inserção e remoção de elementos):*
 
-*utilização*: apesar de não ser explicitamente uma fila, a lógica de inserção (adicionando segmentos da cobra) no início da lista e remoção (retirando a cauda) no final simula um comportamento de fila. isso garante que a cobra mantenha seu tamanho correto.
+*utilização*: apesar de não ser explicitamente uma fila, a lógica de inserção (adicionando segmentos da cobra) no fim da lista e remoção (retirando a cabeça) no início simula um comportamento de fila. isso garante que a cobra mantenha seu tamanho correto.
 
 **Exemplo:**
 
